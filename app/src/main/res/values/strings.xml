@@ -5,4 +5,8 @@
     <string name="watch_list">Watch List</string>
     <string name="market">Market</string>
     <string name="home">Home</string>
+    <string name="home_fragment">home fragment</string>
+    <string name="profile">profile</string>
+    <string name="market_fragment">market fragment</string>
+    <string name="watch_fragment">watch fragment</string>
 </resources>
