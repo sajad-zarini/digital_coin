@@ -56,7 +56,7 @@ public class SliderImageAdapter extends RecyclerView.Adapter<SliderImageAdapter.
         }
 
         public void bind(int photo) {
-            sliderImageItemBinding.viewfading.setVisibility(View.VISIBLE);
+            sliderImageItemBinding.viewFading.setVisibility(View.VISIBLE);
             Glide.with(sliderImageItemBinding.getRoot().getContext())
                     .load(photo)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
