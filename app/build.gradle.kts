@@ -54,4 +54,14 @@ dependencies {
     val hilt_version = "2.48"
     implementation("com.google.dagger:hilt-android:$hilt_version")
     annotationProcessor("com.google.dagger:hilt-compiler:$hilt_version")
+
+    //-------------------------------------------------------------
+    // Rounded Image view
+    implementation("com.makeramen:roundedimageview:2.3.0")
+
+
+    //-----------------------------------------------------------
+    // Glide
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
 }

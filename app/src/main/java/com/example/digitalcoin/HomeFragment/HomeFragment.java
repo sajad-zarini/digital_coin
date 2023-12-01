@@ -8,18 +8,25 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.digitalcoin.HomeFragment.adapter.SliderImageAdapter;
 import com.example.digitalcoin.MainActivity;
 import com.example.digitalcoin.R;
 import com.example.digitalcoin.databinding.FragmentHomeBinding;
+import com.example.digitalcoin.viewModels.AppViewModels;
+
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -31,6 +38,7 @@ public class HomeFragment extends Fragment {
 
     FragmentHomeBinding fragmentHomeBinding;
     MainActivity mainActivity;
+    AppViewModels appViewModels;
 
     @Inject
     @Named("fullName")
@@ -56,9 +64,22 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         fragmentHomeBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
 
-        fragmentHomeBinding.textView3.setText(name);
+        appViewModels = new ViewModelProvider(requireActivity()).get(AppViewModels.class);
+        
+        setUpViewPager2();
 
         return fragmentHomeBinding.getRoot();
+    }
+
+    private void setUpViewPager2() {
+        appViewModels.getMutableLiveData().observe(getActivity(), new Observer<ArrayList<Integer>>() {
+            @Override
+            public void onChanged(ArrayList<Integer> arrayList) {
+                Log.e("test", arrayList.toString());
+                fragmentHomeBinding.viewPagerImageSlider.setAdapter(new SliderImageAdapter(arrayList));
+                fragmentHomeBinding.viewPagerImageSlider.setOffscreenPageLimit(3);
+            }
+        });
     }
 
     private void setUpToolbar(View view) {
