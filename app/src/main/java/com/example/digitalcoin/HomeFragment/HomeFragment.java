@@ -21,10 +21,20 @@ import com.example.digitalcoin.MainActivity;
 import com.example.digitalcoin.R;
 import com.example.digitalcoin.databinding.FragmentHomeBinding;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class HomeFragment extends Fragment {
 
     FragmentHomeBinding fragmentHomeBinding;
     MainActivity mainActivity;
+
+    @Inject
+    @Named("fullName")
+    String name;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -45,6 +55,8 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         fragmentHomeBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
+
+        fragmentHomeBinding.textView3.setText(name);
 
         return fragmentHomeBinding.getRoot();
     }

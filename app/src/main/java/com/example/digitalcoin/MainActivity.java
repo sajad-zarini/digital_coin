@@ -14,6 +14,9 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.digitalcoin.databinding.ActivityMainBinding;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding activityMainBinding;

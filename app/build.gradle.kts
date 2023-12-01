@@ -1,5 +1,6 @@
 plugins {
     id("com.android.application")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -47,4 +48,10 @@ dependencies {
     implementation("androidx.navigation:navigation-ui:2.7.5")
 
     implementation("com.github.ibrahimsn98:SmoothBottomBar:1.7.8")
+
+    //-----------------------------------------------------------
+    // Dagger Hilt
+    val hilt_version = "2.48"
+    implementation("com.google.dagger:hilt-android:$hilt_version")
+    annotationProcessor("com.google.dagger:hilt-compiler:$hilt_version")
 }

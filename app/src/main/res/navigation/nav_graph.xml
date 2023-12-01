@@ -8,16 +8,13 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.digitalcoin.HomeFragment.HomeFragment"
-        android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/marketFragment"
         android:name="com.example.digitalcoin.MarketFragment.MarketFragment"
-        android:label="fragment_market"
         tools:layout="@layout/fragment_market" />
     <fragment
         android:id="@+id/watchListFragment"
         android:name="com.example.digitalcoin.WatchListFragment.WatchListFragment"
-        android:label="fragment_watch_list"
         tools:layout="@layout/fragment_watch_list" />
 </navigation>
