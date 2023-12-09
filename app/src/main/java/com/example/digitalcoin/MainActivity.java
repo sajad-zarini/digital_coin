@@ -1,5 +1,9 @@
 package com.example.digitalcoin;
 
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkRequest;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -17,15 +21,17 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.digitalcoin.databinding.ActivityMainBinding;
 import com.example.digitalcoin.models.cryptoListModel.AllMarketModel;
 import com.example.digitalcoin.viewModels.AppViewModels;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.concurrent.TimeUnit;
+
+import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Observer;
-import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -45,6 +51,12 @@ public class MainActivity extends AppCompatActivity {
 
     AppViewModels appViewModels;
 
+    @Inject
+    ConnectivityManager connectivityManager;
+
+    @Inject
+    NetworkRequest networkRequest;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,8 +74,32 @@ public class MainActivity extends AppCompatActivity {
 
         drawerLayout = activityMainBinding.drawerLayout;
         
-        CallListApiRequest();
+        checkConnection();
+
         setUpViewModel();
+    }
+
+    private void checkConnection() {
+        ConnectivityManager.NetworkCallback networkCallback = new ConnectivityManager.NetworkCallback() {
+            @Override
+            public void onAvailable(@androidx.annotation.NonNull Network network) {
+                Log.e("TAG", "onAvailable: ");
+                CallListApiRequest();
+            }
+
+            @Override
+            public void onLost(@androidx.annotation.NonNull Network network) {
+                Log.e("TAG", "onLost: " );
+                Snackbar.make(activityMainBinding.mainCon, "Internet Connection Lost.", 2000).show();
+            }
+        };
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            connectivityManager.registerDefaultNetworkCallback(networkCallback);
+        }else {
+            connectivityManager.registerNetworkCallback(networkRequest, networkCallback);
+        }
     }
 
     private void setUpViewModel() {
@@ -71,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void CallListApiRequest() {
-        Log.e("TAG", "CallListApiRequest: ");
         Observable.interval(20, TimeUnit.SECONDS)
                 .flatMap(n -> appViewModels.marketFutureCall().get())
                 .subscribeOn(Schedulers.io())
