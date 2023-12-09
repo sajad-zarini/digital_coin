@@ -6,17 +6,34 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.digitalcoin.AppRepository;
 import com.example.digitalcoin.R;
+import com.example.digitalcoin.models.cryptoListModel.AllMarketModel;
 
 import java.util.ArrayList;
+import java.util.concurrent.Future;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.lifecycle.HiltViewModel;
+import io.reactivex.rxjava3.core.Observable;
+
+@HiltViewModel
 public class AppViewModels extends AndroidViewModel {
 
     MutableLiveData<ArrayList<Integer>> mutableLiveData = new MutableLiveData<>();
 
+    @Inject
+    AppRepository appRepository;
+
+    @Inject
     public AppViewModels(@NonNull Application application) {
         super(application);
         getViewPagerData();
+    }
+
+    public Future<Observable<AllMarketModel>> marketFutureCall() {
+        return appRepository.marketListFutureCall();
     }
 
     MutableLiveData<ArrayList<Integer>> getViewPagerData() {
