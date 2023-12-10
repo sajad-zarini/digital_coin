@@ -51,9 +51,9 @@ dependencies {
 
     //-----------------------------------------------------------
     // Dagger Hilt
-    val hilt_version = "2.48"
-    implementation("com.google.dagger:hilt-android:$hilt_version")
-    annotationProcessor("com.google.dagger:hilt-compiler:$hilt_version")
+    val hiltVersion = "2.48"
+    implementation("com.google.dagger:hilt-android:$hiltVersion")
+    annotationProcessor("com.google.dagger:hilt-compiler:$hiltVersion")
 
     //-------------------------------------------------------------
     // Rounded Image view
@@ -73,4 +73,13 @@ dependencies {
     implementation("io.reactivex.rxjava3:rxandroid:3.0.2")
     implementation("io.reactivex.rxjava3:rxjava:3.1.5")
     implementation("com.github.akarnokd:rxjava3-retrofit-adapter:3.0.0")
+
+    // Room Database
+    val roomVersion = "2.6.1"
+
+    implementation("androidx.room:room-runtime:$roomVersion")
+    annotationProcessor("androidx.room:room-compiler:$roomVersion")
+
+    // optional - RxJava3 support for Room
+    implementation("androidx.room:room-rxjava3:$roomVersion")
 }
