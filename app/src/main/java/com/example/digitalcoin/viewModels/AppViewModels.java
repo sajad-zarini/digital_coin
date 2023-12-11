@@ -52,4 +52,8 @@ public class AppViewModels extends AndroidViewModel {
     public MutableLiveData<ArrayList<Integer>> getMutableLiveData() {
         return mutableLiveData;
     }
+
+    public void insertAllMarket(AllMarketModel allMarketModel) {
+        appRepository.InsertAllMarket(allMarketModel);
+    }
 }

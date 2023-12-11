@@ -2,6 +2,7 @@ package com.example.digitalcoin.Hilt.Modules;
 
 import com.example.digitalcoin.AppRepository;
 import com.example.digitalcoin.Retrofit.RequestAPI;
+import com.example.digitalcoin.RoomDB.RoomDao;
 
 import java.io.IOException;
 
@@ -60,7 +61,7 @@ public class HttpAppModule {
 
     @Provides
     @Singleton
-    AppRepository proviceAppRepository(RequestAPI requestAPI) {
-        return new AppRepository(requestAPI);
+    AppRepository proviceAppRepository(RequestAPI requestAPI, RoomDao roomDao) {
+        return new AppRepository(requestAPI, roomDao);
     }
 }

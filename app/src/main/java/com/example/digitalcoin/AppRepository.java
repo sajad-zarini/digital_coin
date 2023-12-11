@@ -1,6 +1,10 @@
 package com.example.digitalcoin;
 
+import android.util.Log;
+
 import com.example.digitalcoin.Retrofit.RequestAPI;
+import com.example.digitalcoin.RoomDB.Entities.MarketListEntity;
+import com.example.digitalcoin.RoomDB.RoomDao;
 import com.example.digitalcoin.models.cryptoListModel.AllMarketModel;
 
 import java.util.concurrent.Callable;
@@ -11,14 +15,23 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.CompletableObserver;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Scheduler;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class AppRepository {
 
     RequestAPI requestAPI;
+    RoomDao roomDao;
 
-    public AppRepository(RequestAPI requestAPI) {
+    public AppRepository(RequestAPI requestAPI, RoomDao roomDao) {
         this.requestAPI = requestAPI;
+        this.roomDao = roomDao;
     }
 
     public Future<Observable<AllMarketModel>> marketListFutureCall() {
@@ -58,5 +71,28 @@ public class AppRepository {
         };
 
         return futureObservable;
+    }
+
+    public void InsertAllMarket(AllMarketModel allMarketModel) {
+        Completable.fromAction(() -> roomDao.insert(new MarketListEntity(allMarketModel)))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new CompletableObserver() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+                        Log.e("InsertAllMarket", "onSubscribe: ok");
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Log.e("InsertAllMarket", "onComplete: ok");
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        Log.e("InsertAllMarket", "onError: " + e.getMessage());
+                    }
+                });
+
     }
 }
