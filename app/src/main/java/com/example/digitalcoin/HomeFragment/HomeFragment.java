@@ -1,5 +1,6 @@
 package com.example.digitalcoin.HomeFragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -23,7 +24,9 @@ import android.view.ViewGroup;
 import com.example.digitalcoin.HomeFragment.adapter.SliderImageAdapter;
 import com.example.digitalcoin.MainActivity;
 import com.example.digitalcoin.R;
+import com.example.digitalcoin.RoomDB.Entities.MarketListEntity;
 import com.example.digitalcoin.databinding.FragmentHomeBinding;
+import com.example.digitalcoin.models.cryptoListModel.AllMarketModel;
 import com.example.digitalcoin.viewModels.AppViewModels;
 
 import java.util.ArrayList;
@@ -32,6 +35,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import dagger.hilt.android.AndroidEntryPoint;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.functions.Consumer;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 @AndroidEntryPoint
 public class HomeFragment extends Fragment {
@@ -68,7 +74,23 @@ public class HomeFragment extends Fragment {
         
         setUpViewPager2();
 
+        getAllMarketDataFromDB();
+
         return fragmentHomeBinding.getRoot();
+    }
+
+    @SuppressLint("CheckResult")
+    private void getAllMarketDataFromDB() {
+        appViewModels.getAllMarketData()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(marketListEntity -> {
+                    AllMarketModel allMarketModel = marketListEntity.getAllMarketModel();
+
+                    Log.e("TAG", "getAllMarketDataFromDB: " + allMarketModel.getData().getCryptoCurrencyList().get(0).getName() );
+                    Log.e("TAG", "getAllMarketDataFromDB: " + allMarketModel.getData().getCryptoCurrencyList().get(1).getName() );
+                });
+
     }
 
     private void setUpViewPager2() {

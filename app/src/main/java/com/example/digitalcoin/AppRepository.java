@@ -19,6 +19,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.CompletableObserver;
+import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -94,5 +95,9 @@ public class AppRepository {
                     }
                 });
 
+    }
+
+    public Flowable<MarketListEntity> getAllMarketData() {
+        return roomDao.getAllMarketData();
     }
 }
