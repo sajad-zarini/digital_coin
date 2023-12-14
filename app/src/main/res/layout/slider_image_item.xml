@@ -13,7 +13,8 @@
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/imageSlide"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
             android:adjustViewBounds="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -23,13 +24,14 @@
 
         <View
             android:id="@+id/viewFading"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:background="@drawable/gradiant_slider"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/imageSlide"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toEndOf="@id/imageSlide"
+            app:layout_constraintStart_toStartOf="@id/imageSlide"
+            app:layout_constraintTop_toTopOf="@+id/imageSlide" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
