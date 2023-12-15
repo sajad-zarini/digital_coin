@@ -82,4 +82,10 @@ dependencies {
 
     // optional - RxJava3 support for Room
     implementation("androidx.room:room-rxjava3:$roomVersion")
+
+    //dot loading
+    implementation("com.agrawalsuneet.androidlibs:dotsloader:1.4")
+
+    implementation("com.caverock:androidsvg:1.4")
+
 }
