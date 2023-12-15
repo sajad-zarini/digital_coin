@@ -7,27 +7,31 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.digitalcoin.HomeFragment.adapter.SliderImageAdapter;
 import com.example.digitalcoin.HomeFragment.adapter.TopCoinRvAdapter;
+import com.example.digitalcoin.HomeFragment.adapter.TopGainLoserAdapter;
 import com.example.digitalcoin.MainActivity;
 import com.example.digitalcoin.R;
 import com.example.digitalcoin.databinding.FragmentHomeBinding;
 import com.example.digitalcoin.models.cryptoListModel.AllMarketModel;
 import com.example.digitalcoin.models.cryptoListModel.DataItem;
 import com.example.digitalcoin.viewModels.AppViewModels;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -57,6 +61,8 @@ public class HomeFragment extends Fragment {
     TopCoinRvAdapter topCoinRvAdapter;
     CompositeDisposable compositeDisposable;
 
+    TopGainLoserAdapter topGainLoserAdapter;
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -79,10 +85,54 @@ public class HomeFragment extends Fragment {
         compositeDisposable = new CompositeDisposable();
 
         setUpViewPager2();
-
         getAllMarketDataFromDB();
+        setUpTabLayoutTopGainLose(fragmentHomeBinding.topGainIndicator, fragmentHomeBinding.topLoseIndicator);
 
         return fragmentHomeBinding.getRoot();
+    }
+
+    private void setUpTabLayoutTopGainLose(View topGainIndicator, View topLoseIndicator) {
+        topGainLoserAdapter = new TopGainLoserAdapter(this);
+        fragmentHomeBinding.viewPager2.setAdapter(topGainLoserAdapter);
+
+        Animation gainAnimIn = AnimationUtils.loadAnimation(requireActivity().getApplicationContext(), R.anim.slide_from_left);
+        Animation gainAnimOut = AnimationUtils.loadAnimation(requireActivity().getApplicationContext(), R.anim.slide_out_left);
+        Animation loseAnimIn = AnimationUtils.loadAnimation(requireActivity().getApplicationContext(), R.anim.slide_from_right);
+        Animation loseAnimOut = AnimationUtils.loadAnimation(requireActivity().getApplicationContext(), R.anim.slide_out_right);
+
+        fragmentHomeBinding.viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+
+                if (position == 1) {
+                    topLoseIndicator.startAnimation(loseAnimOut);
+                    topLoseIndicator.setVisibility(View.GONE);
+                    topGainIndicator.setVisibility(View.VISIBLE);
+                    topGainIndicator.startAnimation(gainAnimIn);
+
+                } else {
+                    topGainIndicator.startAnimation(gainAnimOut);
+                    topGainIndicator.setVisibility(View.GONE);
+                    topLoseIndicator.setVisibility(View.VISIBLE);
+                    topLoseIndicator.startAnimation(loseAnimIn);
+                }
+            }
+        });
+
+        new TabLayoutMediator(fragmentHomeBinding.tabLayout, fragmentHomeBinding.viewPager2, (tab, position) -> {
+
+            if (position == 0) {
+                tab.setText("TopGainers");
+            } else {
+                tab.setText("TopLosers");
+            }
+        }).attach();
     }
 
     @SuppressLint("CheckResult")
@@ -117,8 +167,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void setUpViewPager2() {
-        appViewModels.getMutableLiveData().observe(getActivity(), arrayList -> {
-            Log.e("test", arrayList.toString());
+        appViewModels.getMutableLiveData().observe(requireActivity(), arrayList -> {
             fragmentHomeBinding.viewPagerImageSlider.setAdapter(new SliderImageAdapter(arrayList));
             fragmentHomeBinding.viewPagerImageSlider.setOffscreenPageLimit(3);
         });
