@@ -1,6 +1,7 @@
 package com.example.digitalcoin.MarketFragment;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,12 +21,14 @@ import android.view.ViewGroup;
 import com.example.digitalcoin.MainActivity;
 import com.example.digitalcoin.R;
 import com.example.digitalcoin.databinding.FragmentMarketBinding;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 public class MarketFragment extends Fragment {
 
     FragmentMarketBinding fragmentMarketBinding;
 
     MainActivity mainActivity;
+    CollapsingToolbarLayout collapsingToolbarLayout;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -57,13 +60,16 @@ public class MarketFragment extends Fragment {
                 .build();
 
         Toolbar toolbar = view.findViewById(R.id.toolbar);
+        collapsingToolbarLayout = (CollapsingToolbarLayout) view.findViewById(R.id.collapsing_market_tb);
 
-        NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
+        NavigationUI.setupWithNavController(collapsingToolbarLayout, toolbar, navController, appBarConfiguration);
 
         navController.addOnDestinationChangedListener((navController1, navDestination, bundle) -> {
             if (navDestination.getId() == R.id.marketFragment) {
+                collapsingToolbarLayout.setTitleEnabled(false);
                 toolbar.setNavigationIcon(R.drawable.baseline_sort_24);
                 toolbar.setTitle("Market");
+                toolbar.setTitleTextColor(Color.WHITE);
             }
         });
     }
