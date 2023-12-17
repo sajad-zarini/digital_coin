@@ -10,4 +10,9 @@
     <string name="market_fragment">market fragment</string>
     <string name="watch_fragment">watch fragment</string>
     <string name="image_of_digital_coin">image of digital coin</string>
+    <string name="item_not_found">item not found</string>
+    <string name="search">search</string>
+    <string name="chart">chart</string>
+    <string name="coin_logo">coin logo</string>
+    <string name="market_up_down_icon">market up down icon</string>
 </resources>
