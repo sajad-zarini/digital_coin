@@ -3,6 +3,11 @@ package com.example.digitalcoin.MarketFragment;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,12 +20,6 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.digitalcoin.MainActivity;
 import com.example.digitalcoin.R;
@@ -51,9 +50,7 @@ public class MarketFragment extends Fragment {
     CompositeDisposable compositeDisposable;
 
     List<DataItem> dataItemList;
-
     ArrayList<DataItem> filteredList;
-    ArrayList<DataItem> updatedDataList;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -72,11 +69,11 @@ public class MarketFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         fragmentMarketBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_market, container, false);
         compositeDisposable = new CompositeDisposable();
 
         filteredList = new ArrayList<>();
-        updatedDataList = new ArrayList<>();
 
         setupSearchBox();
         setupViewModel();
@@ -106,40 +103,44 @@ public class MarketFragment extends Fragment {
 
     private void filter(String name) {
         filteredList.clear();
-        for (DataItem item : dataItemList) {
-            if (item.getSymbol().toLowerCase().contains(name.toLowerCase()) || item.getName().toLowerCase().contains(name.toLowerCase())) {
-                filteredList.add(item);
-            }
-        }
 
-        marketRVAdapter.updateData(filteredList);
-        marketRVAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
-            @Override
-            public void onChanged() {
-                super.onChanged();
-                checkEmpty();
-            }
+        if (dataItemList != null) {
 
-            @Override
-            public void onItemRangeInserted(int positionStart, int itemCount) {
-                super.onItemRangeInserted(positionStart, itemCount);
-                checkEmpty();
-            }
-
-            @Override
-            public void onItemRangeRemoved(int positionStart, int itemCount) {
-                super.onItemRangeRemoved(positionStart, itemCount);
-                checkEmpty();
-            }
-
-            void checkEmpty() {
-                if (marketRVAdapter.getItemCount() == 0) {
-                    fragmentMarketBinding.itemNotFoundTxt.setVisibility(View.VISIBLE);
-                } else {
-                    fragmentMarketBinding.itemNotFoundTxt.setVisibility(View.GONE);
+            for (DataItem item : dataItemList) {
+                if (item.getSymbol().toLowerCase().contains(name.toLowerCase()) || item.getName().toLowerCase().contains(name.toLowerCase())) {
+                    filteredList.add(item);
                 }
             }
-        });
+
+            marketRVAdapter.updateData(filteredList);
+            marketRVAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+                @Override
+                public void onChanged() {
+                    super.onChanged();
+                    checkEmpty();
+                }
+
+                @Override
+                public void onItemRangeInserted(int positionStart, int itemCount) {
+                    super.onItemRangeInserted(positionStart, itemCount);
+                    checkEmpty();
+                }
+
+                @Override
+                public void onItemRangeRemoved(int positionStart, int itemCount) {
+                    super.onItemRangeRemoved(positionStart, itemCount);
+                    checkEmpty();
+                }
+
+                void checkEmpty() {
+                    if (marketRVAdapter.getItemCount() == 0) {
+                        fragmentMarketBinding.itemNotFoundTxt.setVisibility(View.VISIBLE);
+                    } else {
+                        fragmentMarketBinding.itemNotFoundTxt.setVisibility(View.GONE);
+                    }
+                }
+            });
+        }
     }
 
     private void setupViewModel() {
