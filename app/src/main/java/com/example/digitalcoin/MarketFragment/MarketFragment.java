@@ -14,7 +14,10 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +52,9 @@ public class MarketFragment extends Fragment {
 
     List<DataItem> dataItemList;
 
+    ArrayList<DataItem> filteredList;
+    ArrayList<DataItem> updatedDataList;
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -69,10 +75,71 @@ public class MarketFragment extends Fragment {
         fragmentMarketBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_market, container, false);
         compositeDisposable = new CompositeDisposable();
 
+        filteredList = new ArrayList<>();
+        updatedDataList = new ArrayList<>();
+
+        setupSearchBox();
         setupViewModel();
         getMarketListDataFromDb();
 
         return fragmentMarketBinding.getRoot();
+    }
+
+    private void setupSearchBox() {
+        fragmentMarketBinding.searchEdittext.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                filter(editable.toString());
+            }
+        });
+    }
+
+    private void filter(String name) {
+        filteredList.clear();
+        for (DataItem item : dataItemList) {
+            if (item.getSymbol().toLowerCase().contains(name.toLowerCase()) || item.getName().toLowerCase().contains(name.toLowerCase())) {
+                filteredList.add(item);
+            }
+        }
+
+        marketRVAdapter.updateData(filteredList);
+        marketRVAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onChanged() {
+                super.onChanged();
+                checkEmpty();
+            }
+
+            @Override
+            public void onItemRangeInserted(int positionStart, int itemCount) {
+                super.onItemRangeInserted(positionStart, itemCount);
+                checkEmpty();
+            }
+
+            @Override
+            public void onItemRangeRemoved(int positionStart, int itemCount) {
+                super.onItemRangeRemoved(positionStart, itemCount);
+                checkEmpty();
+            }
+
+            void checkEmpty() {
+                if (marketRVAdapter.getItemCount() == 0) {
+                    fragmentMarketBinding.itemNotFoundTxt.setVisibility(View.VISIBLE);
+                } else {
+                    fragmentMarketBinding.itemNotFoundTxt.setVisibility(View.GONE);
+                }
+            }
+        });
     }
 
     private void setupViewModel() {
@@ -93,12 +160,12 @@ public class MarketFragment extends Fragment {
                     } else {
                         marketRVAdapter = (MarketRVAdapter) fragmentMarketBinding.marketRv.getAdapter();
 
-//                        if (filteredList.isEmpty() || filteredList.size() == 1000){
-                        marketRVAdapter.updateData((ArrayList<DataItem>) dataItemList);
-//                        }else {
-                        //get All new Data when user searching and filtering
-//                            marketRVAdapter.updateData((ArrayList<DataItem>) filteredList);
-//                        }
+                        if (filteredList.isEmpty() || filteredList.size() == 1000) {
+                            marketRVAdapter.updateData((ArrayList<DataItem>) dataItemList);
+                        } else {
+                            // get All new Data when user searching and filtering
+                            marketRVAdapter.updateData((ArrayList<DataItem>) filteredList);
+                        }
                     }
 
 
