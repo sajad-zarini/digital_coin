@@ -15,4 +15,10 @@
     <string name="chart">chart</string>
     <string name="coin_logo">coin logo</string>
     <string name="market_up_down_icon">market up down icon</string>
+    <string name="volume_icon">volume icon</string>
+    <string name="btc_dominance">BTC Dominance</string>
+    <string name="percent">%</string>
+    <string name="market_cap">Market Cap</string>
+    <string name="_24h_volume">24h Volume</string>
+    <string name="market_cap_icon">market cap icon</string>
 </resources>

@@ -119,30 +119,31 @@ public class MainActivity extends AppCompatActivity {
                         Document pageSrc = Jsoup.connect("https://coinmarketcap.com/").get();
 
                         // Scraping Market Data like (marketCap,Dominance,...)
-                        Elements ScrapeMarketData = pageSrc.getElementsByClass("cmc-link");
+                        Elements scrapeMarketData = pageSrc.getElementsByClass("cmc-link");
 
                         //for splitting BTC and ETH dominance in txt
-                        String[] dominance_txt = ScrapeMarketData.get(4).text().split(" ");
+                        String[] dominance_txt = scrapeMarketData.get(4).text().split(" ");
 
-                        // Scraping Market number of changes like (MarketcapChange,volumeChange,...)
+                        // Scraping Market number of changes like (Market cap Change,volumeChange,...)
                         Elements ScrapeMarketChange = pageSrc.getElementsByClass("sc-27sy12-0 gLZJFn");
                         String[] changePercent = ScrapeMarketChange.text().split(" ");
+                        Log.e("MainTest", "callCryptoMarketApiRequest: " + pageSrc );
 
                         // Scraping All span Tag
                         Elements ScrapeChangeIcon = pageSrc.getElementsByTag("span");
 
                         // get all span Tag wth Icon (class= caretUp and caretDown)
-                        ArrayList<String> IconList = new ArrayList<>();
+                        ArrayList<String> iconList = new ArrayList<>();
                         for (Element i : ScrapeChangeIcon) {
                             if (i.hasClass("icon-Caret-down") || i.hasClass("icon-Caret-up")) {
-                                IconList.add(i.attr("class"));
+                                iconList.add(i.attr("class"));
                             }
                         }
 
                         // matching - or + element of PercentChanges
                         ArrayList<String> finalChangePercent = new ArrayList<>();
                         for (int i = 0; i < 3; i++) {
-                            if (IconList.get(i).equals("icon-Caret-up")) {
+                            if (iconList.get(i).equals("icon-Caret-up")) {
                                 finalChangePercent.add(changePercent[i]);
                             } else {
                                 finalChangePercent.add("-" + changePercent[i]);
@@ -150,10 +151,10 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         // initialize all data
-                        String Cryptos = ScrapeMarketData.get(0).text();
-                        String Exchanges = ScrapeMarketData.get(1).text();
-                        String MarketCap = ScrapeMarketData.get(2).text();
-                        String Vol_24h = ScrapeMarketData.get(3).text();
+                        String Cryptos = scrapeMarketData.get(0).text();
+                        String Exchanges = scrapeMarketData.get(1).text();
+                        String MarketCap = scrapeMarketData.get(2).text();
+                        String Vol_24h = scrapeMarketData.get(3).text();
 
                         String BTC_Dominance = dominance_txt[1];
                         String ETH_Dominance = dominance_txt[3];
@@ -163,6 +164,7 @@ public class MainActivity extends AppCompatActivity {
                         String BTCD_change = finalChangePercent.get(2);
 
                         CryptoMarketDataModel cryptoMarketDataModel = new CryptoMarketDataModel(Cryptos, Exchanges, MarketCap, Vol_24h, BTC_Dominance, ETH_Dominance, MarketCap_change, vol_change, BTCD_change);
+                        Log.e("MainTest", "callCryptoMarketApiRequest: " + cryptoMarketDataModel );
                         // insert model class to RoomDatabase
                         appViewModels.insertCryptoDataMarket(cryptoMarketDataModel);
 
@@ -186,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(@NonNull Throwable e) {
-                        Log.e("TAG", "onError:" + e.getMessage());
+                        Log.e("TAG", "onError11:" + e.toString());
                     }
                 });
     }
