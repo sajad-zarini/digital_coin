@@ -8,8 +8,10 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.digitalcoin.AppRepository;
 import com.example.digitalcoin.R;
+import com.example.digitalcoin.RoomDB.Entities.MarketDataEntity;
 import com.example.digitalcoin.RoomDB.Entities.MarketListEntity;
 import com.example.digitalcoin.models.cryptoListModel.AllMarketModel;
+import com.example.digitalcoin.models.cryptoListModel.CryptoMarketDataModel;
 
 import java.util.ArrayList;
 import java.util.concurrent.Future;
@@ -62,4 +64,13 @@ public class AppViewModels extends AndroidViewModel {
     public Flowable<MarketListEntity> getAllMarketData() {
         return appRepository.getAllMarketData();
     }
+
+    public void insertCryptoDataMarket(CryptoMarketDataModel cryptoMarketDataModel) {
+        appRepository.InsertCryptoDataMarket(cryptoMarketDataModel);
+    }
+
+    public Flowable<MarketDataEntity> getCryptoMarketData(){
+        return appRepository.getCryptoMarketData();
+    }
+
 }

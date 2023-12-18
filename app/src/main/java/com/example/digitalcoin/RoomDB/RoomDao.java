@@ -5,6 +5,7 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
+import com.example.digitalcoin.RoomDB.Entities.MarketDataEntity;
 import com.example.digitalcoin.RoomDB.Entities.MarketListEntity;
 
 import io.reactivex.rxjava3.core.Flowable;
@@ -17,4 +18,11 @@ public interface RoomDao {
 
     @Query("SELECT * FROM AllMarket")
     Flowable<MarketListEntity> getAllMarketData();
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insert(MarketDataEntity marketDataEntity);
+
+    @Query("SELECT * FROM CryptoData")
+    Flowable<MarketDataEntity> getCryptoMarketData();
+
 }

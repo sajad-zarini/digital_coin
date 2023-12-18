@@ -88,4 +88,7 @@ dependencies {
 
     implementation("com.caverock:androidsvg:1.4")
 
+    /// jsoup web scraping
+    implementation("org.jsoup:jsoup:1.17.1")
+
 }

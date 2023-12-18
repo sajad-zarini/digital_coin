@@ -8,10 +8,12 @@ import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
 import com.example.digitalcoin.RoomDB.Converters.AllMarketModelConverters;
+import com.example.digitalcoin.RoomDB.Converters.CryptoDataModelConverter;
+import com.example.digitalcoin.RoomDB.Entities.MarketDataEntity;
 import com.example.digitalcoin.RoomDB.Entities.MarketListEntity;
 
-@TypeConverters({AllMarketModelConverters.class})
-@Database(entities = {MarketListEntity.class},version = 1)
+@TypeConverters({AllMarketModelConverters.class, CryptoDataModelConverter.class})
+@Database(entities = {MarketListEntity.class, MarketDataEntity.class},version = 2)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String Db_name = "appDb";
