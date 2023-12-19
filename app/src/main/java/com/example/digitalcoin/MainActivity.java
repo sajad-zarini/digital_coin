@@ -124,11 +124,6 @@ public class MainActivity extends AppCompatActivity {
                         //for splitting BTC and ETH dominance in txt
                         String[] dominance_txt = scrapeMarketData.get(4).text().split(" ");
 
-                        // Scraping Market number of changes like (Market cap Change,volumeChange,...)
-                        Elements ScrapeMarketChange = pageSrc.getElementsByClass("sc-27sy12-0 gLZJFn");
-                        String[] changePercent = ScrapeMarketChange.text().split(" ");
-                        Log.e("MainTest", "callCryptoMarketApiRequest: " + pageSrc );
-
                         // Scraping All span Tag
                         Elements ScrapeChangeIcon = pageSrc.getElementsByTag("span");
 
@@ -137,16 +132,6 @@ public class MainActivity extends AppCompatActivity {
                         for (Element i : ScrapeChangeIcon) {
                             if (i.hasClass("icon-Caret-down") || i.hasClass("icon-Caret-up")) {
                                 iconList.add(i.attr("class"));
-                            }
-                        }
-
-                        // matching - or + element of PercentChanges
-                        ArrayList<String> finalChangePercent = new ArrayList<>();
-                        for (int i = 0; i < 3; i++) {
-                            if (iconList.get(i).equals("icon-Caret-up")) {
-                                finalChangePercent.add(changePercent[i]);
-                            } else {
-                                finalChangePercent.add("-" + changePercent[i]);
                             }
                         }
 
@@ -159,13 +144,8 @@ public class MainActivity extends AppCompatActivity {
                         String BTC_Dominance = dominance_txt[1];
                         String ETH_Dominance = dominance_txt[3];
 
-                        String MarketCap_change = finalChangePercent.get(0);
-                        String vol_change = finalChangePercent.get(1);
-                        String BTCD_change = finalChangePercent.get(2);
-
-                        CryptoMarketDataModel cryptoMarketDataModel = new CryptoMarketDataModel(Cryptos, Exchanges, MarketCap, Vol_24h, BTC_Dominance, ETH_Dominance, MarketCap_change, vol_change, BTCD_change);
-                        Log.e("MainTest", "callCryptoMarketApiRequest: " + cryptoMarketDataModel );
-                        // insert model class to RoomDatabase
+                        CryptoMarketDataModel cryptoMarketDataModel = new CryptoMarketDataModel(Cryptos, Exchanges, MarketCap, Vol_24h, BTC_Dominance, ETH_Dominance);
+//                         insert model class to RoomDatabase
                         appViewModels.insertCryptoDataMarket(cryptoMarketDataModel);
 
                     } catch (IOException e) {
