@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.PopupMenu;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +23,7 @@ import com.example.digitalcoin.databinding.ActivityMainBinding;
 import com.example.digitalcoin.models.cryptoListModel.AllMarketModel;
 import com.example.digitalcoin.models.cryptoListModel.CryptoMarketDataModel;
 import com.example.digitalcoin.viewModels.AppViewModels;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.jsoup.Jsoup;
@@ -75,15 +77,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
-        appBarConfiguration = new AppBarConfiguration.Builder(R.id.homeFragment, R.id.marketFragment, R.id.watchListFragment)
-                .setOpenableLayout(activityMainBinding.drawerLayout)
-                .build();
-
         setupSmoothBottomComponent();
 
         compositeDisposable = new CompositeDisposable();
-
-        NavigationUI.setupWithNavController(activityMainBinding.navigationView, navController);
 
         drawerLayout = activityMainBinding.drawerLayout;
 
@@ -238,6 +234,22 @@ public class MainActivity extends AppCompatActivity {
     private void setupSmoothBottomComponent() {
         navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         navController = navHostFragment.getNavController();
+
+        appBarConfiguration = new AppBarConfiguration.Builder(R.id.homeFragment, R.id.marketFragment, R.id.watchListFragment)
+                .setOpenableLayout(activityMainBinding.drawerLayout)
+                .build();
+
+        NavigationUI.setupWithNavController(activityMainBinding.navigationView, navController);
+
+        activityMainBinding.navigationView.setNavigationItemSelectedListener(item -> {
+            if (item.getItemId() == R.id.exit){
+                finish();
+            }else {
+                NavigationUI.onNavDestinationSelected(item, navController);
+                activityMainBinding.drawerLayout.closeDrawers();
+            }
+            return false;
+        });
 
         setupSmoothBottomMenu();
     }

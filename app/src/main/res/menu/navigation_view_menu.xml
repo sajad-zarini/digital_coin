@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:enabled="true"
+        android:title="@string/home"
+        android:icon="@drawable/baseline_home_24"/>
+
+    <item
+        android:id="@+id/marketFragment"
+        android:title="@string/market"
+        android:enabled="true"
+        android:icon="@drawable/baseline_bar_chart_24"/>
+
+    <item
+        android:id="@+id/watchListFragment"
+        android:title="@string/watch_list"
+        android:enabled="true"
+        android:icon="@drawable/baseline_bookmark_24"/>
+
+        <item
+        android:id="@+id/exit"
+        android:title="@string/exit"
+        android:enabled="true"
+        android:icon="@drawable/baseline_exit_to_app_24"/>
+
+</menu>
