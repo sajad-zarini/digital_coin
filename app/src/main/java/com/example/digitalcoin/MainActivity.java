@@ -30,7 +30,10 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
@@ -124,6 +127,19 @@ public class MainActivity extends AppCompatActivity {
                         //for splitting BTC and ETH dominance in txt
                         String[] dominance_txt = scrapeMarketData.get(4).text().split(" ");
 
+                        // Scraping Market number of changes like (Market cap Change,volumeChange,...)
+                        Elements ScrapeMarketChange = pageSrc.getElementsByClass("sc-8a0bb4db-2 dojvi");
+                        String[] changePercent = ScrapeMarketChange.text().split(" ");
+                        String[] changePercentModified = new String[changePercent.length - 3];
+                        int currentIndex = 0;
+
+                        for (int i = 0; i < changePercent.length; i++) {
+                            if (i != 0 && i != 1 && i != 3) {
+                                changePercentModified[currentIndex] = changePercent[i];
+                                currentIndex++;
+                            }
+                        }
+
                         // Scraping All span Tag
                         Elements ScrapeChangeIcon = pageSrc.getElementsByTag("span");
 
@@ -132,6 +148,16 @@ public class MainActivity extends AppCompatActivity {
                         for (Element i : ScrapeChangeIcon) {
                             if (i.hasClass("icon-Caret-down") || i.hasClass("icon-Caret-up")) {
                                 iconList.add(i.attr("class"));
+                            }
+                        }
+
+                        // matching - or + element of PercentChanges
+                        ArrayList<String> finalChangePercent = new ArrayList<>();
+                        for (int i = 0; i < 3; i++) {
+                            if (iconList.get(i).equals("icon-Caret-up")) {
+                                finalChangePercent.add(changePercent[i]);
+                            } else {
+                                finalChangePercent.add("-" + changePercent[i]);
                             }
                         }
 
@@ -144,8 +170,12 @@ public class MainActivity extends AppCompatActivity {
                         String BTC_Dominance = dominance_txt[1];
                         String ETH_Dominance = dominance_txt[3];
 
-                        CryptoMarketDataModel cryptoMarketDataModel = new CryptoMarketDataModel(Cryptos, Exchanges, MarketCap, Vol_24h, BTC_Dominance, ETH_Dominance);
-//                         insert model class to RoomDatabase
+                        String MarketCap_change = changePercentModified[0];
+                        String vol_change = changePercentModified[1];
+                        String BTCD_change = changePercentModified[2];
+
+                        CryptoMarketDataModel cryptoMarketDataModel = new CryptoMarketDataModel(Cryptos, Exchanges, MarketCap, Vol_24h, BTC_Dominance, ETH_Dominance, MarketCap_change, vol_change, BTCD_change);
+                        /// insert model class to RoomDatabase
                         appViewModels.insertCryptoDataMarket(cryptoMarketDataModel);
 
                     } catch (IOException e) {
@@ -168,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(@NonNull Throwable e) {
-                        Log.e("TAG", "onError11:" + e.toString());
+                        Log.e("TAG", "onError:" + e.toString());
                     }
                 });
     }
@@ -190,9 +220,6 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onNext(@NonNull AllMarketModel allMarketModel) {
-                        Log.e("TAG", "onNext: " + allMarketModel.getData().getCryptoCurrencyList().get(0).getName());
-                        Log.e("TAG", "onNext: " + allMarketModel.getData().getCryptoCurrencyList().get(1).getName());
-
                         appViewModels.insertAllMarket(allMarketModel);
                     }
 
