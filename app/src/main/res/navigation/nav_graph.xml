@@ -8,13 +8,26 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.digitalcoin.HomeFragment.HomeFragment"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/marketFragment"
         android:name="com.example.digitalcoin.MarketFragment.MarketFragment"
-        tools:layout="@layout/fragment_market" />
+        tools:layout="@layout/fragment_market" >
+        <action
+            android:id="@+id/action_marketFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/watchListFragment"
         android:name="com.example.digitalcoin.WatchListFragment.WatchListFragment"
         tools:layout="@layout/fragment_watch_list" />
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.digitalcoin.DetailFragment.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" />
 </navigation>
