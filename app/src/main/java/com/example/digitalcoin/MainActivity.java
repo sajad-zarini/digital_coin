@@ -7,7 +7,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.PopupMenu;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,10 +19,9 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.digitalcoin.databinding.ActivityMainBinding;
-import com.example.digitalcoin.models.cryptoListModel.AllMarketModel;
-import com.example.digitalcoin.models.cryptoListModel.CryptoMarketDataModel;
-import com.example.digitalcoin.viewModels.AppViewModels;
-import com.google.android.material.navigation.NavigationView;
+import com.example.digitalcoin.Models.cryptoListModel.AllMarketModel;
+import com.example.digitalcoin.Models.cryptoMarketDataModel.CryptoMarketDataModel;
+import com.example.digitalcoin.ViewModels.AppViewModels;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.jsoup.Jsoup;
@@ -32,10 +30,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;

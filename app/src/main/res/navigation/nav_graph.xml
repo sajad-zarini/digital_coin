@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.digitalcoin.HomeFragment.HomeFragment"
+        android:name="com.example.digitalcoin.UI.HomeFragment.HomeFragment"
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_detailFragment"
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/marketFragment"
-        android:name="com.example.digitalcoin.MarketFragment.MarketFragment"
+        android:name="com.example.digitalcoin.UI.MarketFragment.MarketFragment"
         tools:layout="@layout/fragment_market" >
         <action
             android:id="@+id/action_marketFragment_to_detailFragment"
@@ -23,11 +23,11 @@
     </fragment>
     <fragment
         android:id="@+id/watchListFragment"
-        android:name="com.example.digitalcoin.WatchListFragment.WatchListFragment"
+        android:name="com.example.digitalcoin.UI.WatchListFragment.WatchListFragment"
         tools:layout="@layout/fragment_watch_list" />
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.example.digitalcoin.DetailFragment.DetailFragment"
+        android:name="com.example.digitalcoin.UI.DetailFragment.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" />
 </navigation>

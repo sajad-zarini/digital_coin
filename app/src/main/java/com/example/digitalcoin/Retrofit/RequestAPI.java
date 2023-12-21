@@ -1,6 +1,6 @@
 package com.example.digitalcoin.Retrofit;
 
-import com.example.digitalcoin.models.cryptoListModel.AllMarketModel;
+import com.example.digitalcoin.Models.cryptoListModel.AllMarketModel;
 
 import io.reactivex.rxjava3.core.Observable;
 import retrofit2.http.GET;

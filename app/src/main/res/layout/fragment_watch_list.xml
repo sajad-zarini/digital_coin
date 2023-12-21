@@ -11,7 +11,7 @@
         android:id="@+id/watchCon"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".WatchListFragment.WatchListFragment">
+        tools:context=".UI.WatchListFragment.WatchListFragment">
 
         <include
             layout="@layout/app_bar_layout"

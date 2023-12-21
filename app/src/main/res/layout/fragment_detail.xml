@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".DetailFragment.DetailFragment">
+        tools:context=".UI.DetailFragment.DetailFragment">
 
         <Button
             android:id="@+id/bckbtn"

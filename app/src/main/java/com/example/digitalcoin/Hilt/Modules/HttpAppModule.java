@@ -1,8 +1,8 @@
 package com.example.digitalcoin.Hilt.Modules;
 
-import com.example.digitalcoin.AppRepository;
+import com.example.digitalcoin.Repository.AppRepository;
 import com.example.digitalcoin.Retrofit.RequestAPI;
-import com.example.digitalcoin.RoomDB.RoomDao;
+import com.example.digitalcoin.Room.RoomDao;
 
 import java.io.IOException;
 

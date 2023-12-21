@@ -2,8 +2,8 @@ package com.example.digitalcoin.Hilt.Modules;
 
 import android.content.Context;
 
-import com.example.digitalcoin.RoomDB.AppDatabase;
-import com.example.digitalcoin.RoomDB.RoomDao;
+import com.example.digitalcoin.Room.AppDatabase;
+import com.example.digitalcoin.Room.RoomDao;
 
 import javax.inject.Singleton;
 
