@@ -22,4 +22,8 @@
     <string name="_24h_volume">24h Volume</string>
     <string name="market_cap_icon">market cap icon</string>
     <string name="exit">Exit</string>
+    <string name="app_logo">app logo</string>
+    <string name="powered_sajad_zarini_inspired_by_besenior">Powered Sajad Zarini Inspired by BeSenior</string>
+    <string name="getting_data">Getting Data…</string>
+    <string name="connection_lost">Internet Connection lost…</string>
 </resources>

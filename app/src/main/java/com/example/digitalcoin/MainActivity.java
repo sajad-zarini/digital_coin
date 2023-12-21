@@ -3,7 +3,6 @@ package com.example.digitalcoin;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkRequest;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -18,10 +17,10 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.digitalcoin.databinding.ActivityMainBinding;
 import com.example.digitalcoin.Models.cryptoListModel.AllMarketModel;
 import com.example.digitalcoin.Models.cryptoMarketDataModel.CryptoMarketDataModel;
 import com.example.digitalcoin.ViewModels.AppViewModels;
+import com.example.digitalcoin.databinding.ActivityMainBinding;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.jsoup.Jsoup;
@@ -100,13 +99,10 @@ public class MainActivity extends AppCompatActivity {
         };
 
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            connectivityManager.registerDefaultNetworkCallback(networkCallback);
-        } else {
-            connectivityManager.registerNetworkCallback(networkRequest, networkCallback);
-        }
+        connectivityManager.registerDefaultNetworkCallback(networkCallback);
     }
 
+    @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
     private void callCryptoMarketApiRequest() {
         Completable.fromRunnable(() -> {
                     try {
@@ -228,7 +224,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupSmoothBottomComponent() {
         navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
-        navController = navHostFragment.getNavController();
+        navController = navHostFragment != null ? navHostFragment.getNavController() : null;
 
         appBarConfiguration = new AppBarConfiguration.Builder(R.id.homeFragment, R.id.marketFragment, R.id.watchListFragment)
                 .setOpenableLayout(activityMainBinding.drawerLayout)
@@ -237,9 +233,9 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(activityMainBinding.navigationView, navController);
 
         activityMainBinding.navigationView.setNavigationItemSelectedListener(item -> {
-            if (item.getItemId() == R.id.exit){
+            if (item.getItemId() == R.id.exit) {
                 finish();
-            }else {
+            } else {
                 NavigationUI.onNavDestinationSelected(item, navController);
                 activityMainBinding.drawerLayout.closeDrawers();
             }
