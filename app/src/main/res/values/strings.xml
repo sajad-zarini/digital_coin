@@ -23,7 +23,13 @@
     <string name="market_cap_icon">market cap icon</string>
     <string name="exit">Exit</string>
     <string name="app_logo">app logo</string>
-    <string name="powered_sajad_zarini_inspired_by_besenior">Powered Sajad Zarini Inspired by BeSenior</string>
+    <string name="powered_sajad_zarini_inspired_by_besenior">Develop By Sajad Zarini &amp; Inspired by BeSenior</string>
     <string name="getting_data">Getting Data…</string>
     <string name="connection_lost">Internet Connection lost…</string>
+    <string name="settings">Settings</string>
+    <string name="about_us">about us</string>
+    <string name="privacy_policy">privacy policy</string>
+    <string name="sajad_zarini">Sajad Zarini</string>
+    <string name="example_mail_com">example@mail.com</string>
+    <string name="set_your_profile_name">set your name in profile</string>
 </resources>

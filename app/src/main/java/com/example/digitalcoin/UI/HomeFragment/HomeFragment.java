@@ -36,9 +36,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.inject.Inject;
-import javax.inject.Named;
-
 import dagger.hilt.android.AndroidEntryPoint;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -51,10 +48,6 @@ public class HomeFragment extends Fragment {
     FragmentHomeBinding fragmentHomeBinding;
     MainActivity mainActivity;
     AppViewModels appViewModels;
-
-    @Inject
-    @Named("fullName")
-    String name;
 
     public List<String> top_wants = Arrays.asList("BTC", "ETH", "BNB", "ADA", "XRP", "DOGE", "DOT", "UNI", "LTC", "LINK");
     TopCoinRvAdapter topCoinRvAdapter;

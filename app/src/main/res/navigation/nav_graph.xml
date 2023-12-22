@@ -8,26 +8,54 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.digitalcoin.UI.HomeFragment.HomeFragment"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/marketFragment"
         android:name="com.example.digitalcoin.UI.MarketFragment.MarketFragment"
-        tools:layout="@layout/fragment_market" >
+        tools:layout="@layout/fragment_market">
         <action
             android:id="@+id/action_marketFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/watchListFragment"
         android:name="com.example.digitalcoin.UI.WatchListFragment.WatchListFragment"
         tools:layout="@layout/fragment_watch_list" />
+
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.example.digitalcoin.UI.DetailFragment.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" />
+
+    <fragment
+        android:id="@+id/aboutUs_fragment"
+        android:name="com.example.digitalcoin.UI.OtherFragment.AboutUsFragment"
+        android:label="AboutUs_fragment"
+        tools:layout="@layout/fragment_about_us"/>
+
+    <fragment
+        android:id="@+id/setting_fragment"
+        android:name="com.example.digitalcoin.UI.OtherFragment.SettingFragment"
+        android:label="SettingFragment"
+        tools:layout="@layout/fragment_setting"/>
+
+    <fragment
+        android:id="@+id/profile_fragment"
+        android:name="com.example.digitalcoin.UI.OtherFragment.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile"/>
+
+    <fragment
+        android:id="@+id/privacy_policy_fragment"
+        android:name="com.example.digitalcoin.UI.OtherFragment.PrivacyPolicyFragment"
+        android:label="fragment_privacypolicy"
+        tools:layout="@layout/fragment_privacy_policy" />
+
 </navigation>

@@ -1,28 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/homeFragment"
-        android:enabled="true"
-        android:title="@string/home"
-        android:icon="@drawable/baseline_home_24"/>
-
-    <item
-        android:id="@+id/marketFragment"
-        android:title="@string/market"
-        android:enabled="true"
-        android:icon="@drawable/baseline_bar_chart_24"/>
-
-    <item
-        android:id="@+id/watchListFragment"
-        android:title="@string/watch_list"
-        android:enabled="true"
-        android:icon="@drawable/baseline_bookmark_24"/>
+    <group
+        android:id="@+id/menu_top_navigation_view_1"
+        android:checkableBehavior="single">
 
         <item
-        android:id="@+id/exit"
-        android:title="@string/exit"
-        android:enabled="true"
-        android:icon="@drawable/baseline_exit_to_app_24"/>
+            android:id="@+id/homeFragment"
+            android:enabled="true"
+            android:icon="@drawable/baseline_home_24"
+            android:title="@string/home" />
+
+        <item
+            android:id="@+id/marketFragment"
+            android:enabled="true"
+            android:icon="@drawable/baseline_bar_chart_24"
+            android:title="@string/market" />
+
+        <item
+            android:id="@+id/watchListFragment"
+            android:enabled="true"
+            android:icon="@drawable/baseline_bookmark_24"
+            android:title="@string/watch_list" />
+
+    </group>
+
+    <group
+        android:id="@+id/menu_top_navigation_view_2"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/profile_fragment"
+            android:enabled="true"
+            android:icon="@drawable/baseline_person_2_24"
+            android:title="@string/profile" />
+
+        <item
+            android:id="@+id/setting_fragment"
+            android:enabled="true"
+            android:icon="@drawable/baseline_settings_24"
+            android:title="@string/settings" />
+
+        <item
+            android:id="@+id/aboutUs_fragment"
+            android:enabled="true"
+            android:icon="@drawable/baseline_emoji_people_24"
+            android:title="@string/about_us" />
+
+        <item
+            android:id="@+id/privacy_policy_fragment"
+            android:enabled="true"
+            android:icon="@drawable/baseline_privacy_tip_24"
+            android:title="@string/privacy_policy" />
+
+        <item
+            android:id="@+id/exit"
+            android:enabled="true"
+            android:icon="@drawable/baseline_exit_to_app_24"
+            android:title="@string/exit" />
+
+    </group>
 
 </menu>
