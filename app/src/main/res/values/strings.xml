@@ -48,4 +48,9 @@
     <string name="dark_mode">DarkMode</string>
     <string name="language">language</string>
     <string name="version">Version</string>
+    <string name="change_photo">Change Photo</string>
+    <string name="save">save</string>
+    <string name="first_name">First Name</string>
+    <string name="mail">mail</string>
+    <string name="last_name">Last Name</string>
 </resources>
