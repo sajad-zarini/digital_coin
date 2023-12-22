@@ -91,4 +91,8 @@ dependencies {
     /// jsoup web scraping
     implementation("org.jsoup:jsoup:1.17.1")
 
+    //---------------------------------------------------------------
+    //switch btn
+    implementation("com.github.zcweng:switch-button:0.0.3@aar")
+
 }

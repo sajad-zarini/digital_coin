@@ -45,4 +45,7 @@
     <string name="about_us_description">besenior Academy is a collection of expert developers Aims to provide world users with easier access to information in various fields of Crypto currencies, health, weather, etc.</string>
     <string name="about_us_description_2">Information is power And we will be happy for all users in the world to have quick and easy access to resources</string>
     <string name="telegram">telegram</string>
+    <string name="dark_mode">DarkMode</string>
+    <string name="language">language</string>
+    <string name="version">Version</string>
 </resources>
