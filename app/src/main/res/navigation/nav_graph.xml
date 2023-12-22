@@ -32,30 +32,40 @@
         android:id="@+id/detailFragment"
         android:name="com.example.digitalcoin.UI.DetailFragment.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail">
+        <action
+            android:id="@+id/action_detailFragment_to_landScapeChartFragment"
+            app:destination="@id/landScapeChartFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/aboutUs_fragment"
         android:name="com.example.digitalcoin.UI.OtherFragment.AboutUsFragment"
         android:label="AboutUs_fragment"
-        tools:layout="@layout/fragment_about_us"/>
+        tools:layout="@layout/fragment_about_us" />
 
     <fragment
         android:id="@+id/setting_fragment"
         android:name="com.example.digitalcoin.UI.OtherFragment.SettingFragment"
         android:label="SettingFragment"
-        tools:layout="@layout/fragment_setting"/>
+        tools:layout="@layout/fragment_setting" />
 
     <fragment
         android:id="@+id/profile_fragment"
         android:name="com.example.digitalcoin.UI.OtherFragment.ProfileFragment"
         android:label="ProfileFragment"
-        tools:layout="@layout/fragment_profile"/>
+        tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/privacy_policy_fragment"
         android:name="com.example.digitalcoin.UI.OtherFragment.PrivacyPolicyFragment"
         android:label="fragment_privacypolicy"
         tools:layout="@layout/fragment_privacy_policy" />
+
+    <fragment
+        android:id="@+id/landScapeChartFragment"
+        android:name="com.example.digitalcoin.UI.DetailFragment.LandScapeChartFragment"
+        android:label="LandScapeChartFragment"
+        tools:layout="@layout/fragment_land_scape_chart" />
 
 </navigation>

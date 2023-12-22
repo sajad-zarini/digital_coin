@@ -53,4 +53,17 @@
     <string name="first_name">First Name</string>
     <string name="mail">mail</string>
     <string name="last_name">Last Name</string>
+    <string name="bookmark_btn">BookMarkBtn</string>
+    <string name="back_button">backButton</string>
+    <string name="change_icon">ChangeIcon</string>
+    <string name="_15m">15m</string>
+    <string name="_1h">1h</string>
+    <string name="Daily">D</string>
+    <string name="weekly">W</string>
+    <string name="monthly">M</string>
+    <string name="_1d">1D</string>
+    <string name="_1m">1M</string>
+    <string name="_1w">1W</string>
+    <string name="_4h">4h</string>
+    <string name="fullscreen">Fullscreen</string>
 </resources>
