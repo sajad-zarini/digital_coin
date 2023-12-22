@@ -38,4 +38,11 @@
     <string name="privacy_3">3. will your information be shared with anyone?</string>
     <string name="privacy_2">2. how do we use your information?</string>
     <string name="privacy_1">1. What information do we collect?</string>
+    <string name="instagram_id">instagram.com/besenior.academy</string>
+    <string name="youtube_id">Channel: besenior</string>
+    <string name="telegram_id">t.me/mhm555</string>
+    <string name="contact_us">Contact us</string>
+    <string name="about_us_description">besenior Academy is a collection of expert developers Aims to provide world users with easier access to information in various fields of Crypto currencies, health, weather, etc.</string>
+    <string name="about_us_description_2">Information is power And we will be happy for all users in the world to have quick and easy access to resources</string>
+    <string name="telegram">telegram</string>
 </resources>
