@@ -32,4 +32,10 @@
     <string name="sajad_zarini">Sajad Zarini</string>
     <string name="example_mail_com">example@mail.com</string>
     <string name="set_your_profile_name">set your name in profile</string>
+    <string name="what_we_collect">Personal Information Provided by You. We collect firstnames,lastnames and email addresses</string>
+    <string name="why_collect">We process your information for purposes based on legitimate business interests, the fulfillment of our contract with you, compliance with our legal obligations, and your consent.</string>
+    <string name="where_share">We only share information with your consent, to comply with laws, to provide you with services, to protect your rights, or to fulfill business obligations</string>
+    <string name="privacy_3">3. will your information be shared with anyone?</string>
+    <string name="privacy_2">2. how do we use your information?</string>
+    <string name="privacy_1">1. What information do we collect?</string>
 </resources>
