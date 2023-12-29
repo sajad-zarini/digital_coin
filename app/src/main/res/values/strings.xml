@@ -68,4 +68,6 @@
     <string name="fullscreen">Fullscreen</string>
     <string name="there_is_no_item">there is no Item</string>
     <string name="status_change">status change</string>
+    <string name="title">Title</string>
+    <string name="message">Message</string>
 </resources>
