@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#0A0320"
-        tools:context=".UI.OtherFragment.SettingFragment">
+        tools:context=".ui.other.SettingFragment">
 
         <TextView
             android:id="@+id/version_txt"

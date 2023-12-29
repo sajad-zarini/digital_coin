@@ -217,7 +217,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/nested_scroll_bg"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:context=".UI.MarketFragment.MarketFragment">
+            tools:context=".ui.market.MarketFragment">
 
             <TextView
                 android:id="@+id/item_not_found_txt"

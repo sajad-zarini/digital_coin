@@ -23,9 +23,9 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.digitalcoin.Models.cryptoListModel.AllMarketModel;
-import com.example.digitalcoin.Models.cryptoMarketDataModel.CryptoMarketDataModel;
-import com.example.digitalcoin.ViewModels.AppViewModels;
+import com.example.digitalcoin.models.cryptoListModel.AllMarketModel;
+import com.example.digitalcoin.models.cryptoMarketDataModel.CryptoMarketDataModel;
+import com.example.digitalcoin.viewmodel.AppViewModels;
 import com.example.digitalcoin.databinding.ActivityMainBinding;
 import com.example.digitalcoin.databinding.DrawerHeaderLayoutBinding;
 import com.google.android.material.snackbar.Snackbar;

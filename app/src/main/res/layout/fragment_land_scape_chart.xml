@@ -11,7 +11,7 @@
         android:id="@+id/land_scape_chart_con"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".UI.DetailFragment.LandScapeChartFragment">
+        tools:context=".ui.detail.LandScapeChartFragment">
 
         <WebView
             android:id="@+id/chart_web_view"

@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#0A0320"
-        tools:context=".UI.OtherFragment.PrivacyPolicyFragment">
+        tools:context=".ui.other.PrivacyPolicyFragment">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"

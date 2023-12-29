@@ -14,8 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.digitalcoin.Models.cryptoListModel.AllMarketModel;
-import com.example.digitalcoin.ViewModels.AppViewModels;
+import com.example.digitalcoin.models.cryptoListModel.AllMarketModel;
+import com.example.digitalcoin.viewmodel.AppViewModels;
 import com.example.digitalcoin.databinding.ActivitySplashScreenBinding;
 
 import java.util.concurrent.ExecutionException;

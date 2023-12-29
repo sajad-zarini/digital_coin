@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.digitalcoin.UI.HomeFragment.HomeFragment"
+        android:name="com.example.digitalcoin.ui.home.HomeFragment"
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_detailFragment"
@@ -16,7 +16,7 @@
 
     <fragment
         android:id="@+id/marketFragment"
-        android:name="com.example.digitalcoin.UI.MarketFragment.MarketFragment"
+        android:name="com.example.digitalcoin.ui.market.MarketFragment"
         tools:layout="@layout/fragment_market">
         <action
             android:id="@+id/action_marketFragment_to_detailFragment"
@@ -25,12 +25,12 @@
 
     <fragment
         android:id="@+id/watchListFragment"
-        android:name="com.example.digitalcoin.UI.WatchListFragment.WatchListFragment"
+        android:name="com.example.digitalcoin.ui.watchList.WatchListFragment"
         tools:layout="@layout/fragment_watch_list" />
 
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.example.digitalcoin.UI.DetailFragment.DetailFragment"
+        android:name="com.example.digitalcoin.ui.detail.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail">
         <action
@@ -40,31 +40,31 @@
 
     <fragment
         android:id="@+id/aboutUs_fragment"
-        android:name="com.example.digitalcoin.UI.OtherFragment.AboutUsFragment"
+        android:name="com.example.digitalcoin.ui.other.AboutUsFragment"
         android:label="AboutUs_fragment"
         tools:layout="@layout/fragment_about_us" />
 
     <fragment
         android:id="@+id/setting_fragment"
-        android:name="com.example.digitalcoin.UI.OtherFragment.SettingFragment"
+        android:name="com.example.digitalcoin.ui.other.SettingFragment"
         android:label="SettingFragment"
         tools:layout="@layout/fragment_setting" />
 
     <fragment
         android:id="@+id/profile_fragment"
-        android:name="com.example.digitalcoin.UI.OtherFragment.ProfileFragment"
+        android:name="com.example.digitalcoin.ui.other.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/privacy_policy_fragment"
-        android:name="com.example.digitalcoin.UI.OtherFragment.PrivacyPolicyFragment"
+        android:name="com.example.digitalcoin.ui.other.PrivacyPolicyFragment"
         android:label="fragment_privacypolicy"
         tools:layout="@layout/fragment_privacy_policy" />
 
     <fragment
         android:id="@+id/landScapeChartFragment"
-        android:name="com.example.digitalcoin.UI.DetailFragment.LandScapeChartFragment"
+        android:name="com.example.digitalcoin.ui.detail.LandScapeChartFragment"
         android:label="LandScapeChartFragment"
         tools:layout="@layout/fragment_land_scape_chart" />
 
