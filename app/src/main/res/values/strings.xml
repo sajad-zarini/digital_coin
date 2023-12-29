@@ -66,4 +66,6 @@
     <string name="_1w">1W</string>
     <string name="_4h">4h</string>
     <string name="fullscreen">Fullscreen</string>
+    <string name="there_is_no_item">there is no Item</string>
+    <string name="status_change">status change</string>
 </resources>

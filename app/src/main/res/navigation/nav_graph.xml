@@ -26,7 +26,11 @@
     <fragment
         android:id="@+id/watchListFragment"
         android:name="com.example.digitalcoin.ui.watchList.WatchListFragment"
-        tools:layout="@layout/fragment_watch_list" />
+        tools:layout="@layout/fragment_watch_list" >
+        <action
+            android:id="@+id/action_watchListFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/detailFragment"
