@@ -29,12 +29,14 @@ import com.example.digitalcoin.models.cryptoListModel.AllMarketModel;
 import com.example.digitalcoin.models.cryptoListModel.DataItem;
 import com.example.digitalcoin.room.entities.MarketListEntity;
 import com.example.digitalcoin.viewmodel.AppViewModels;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -76,7 +78,7 @@ public class WatchListFragment extends Fragment {
         fragmentWatchListBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_watch_list, container, false);
         appViewModels = new ViewModelProvider(requireActivity()).get(AppViewModels.class);
 
-        // mFirebaseAnalytics = FirebaseAnalytics.getInstance(getActivity().getApplicationContext());
+        FirebaseAnalytics mFirebaseAnalytics = FirebaseAnalytics.getInstance(requireActivity().getApplicationContext());
 
         finalData = new ArrayList<>();
 

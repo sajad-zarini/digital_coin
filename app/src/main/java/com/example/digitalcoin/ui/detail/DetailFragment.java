@@ -27,6 +27,7 @@ import com.example.digitalcoin.models.cryptoListModel.DataItem;
 import com.example.digitalcoin.R;
 import com.example.digitalcoin.viewmodel.CryptoDetailViewModel;
 import com.example.digitalcoin.databinding.FragmentDetailBinding;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -38,6 +39,8 @@ import io.reactivex.rxjava3.annotations.NonNull;
 import me.ibrahimsn.lib.SmoothBottomBar;
 
 public class DetailFragment extends Fragment {
+
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     boolean watchlistIsChecked = false;
 
@@ -64,7 +67,7 @@ public class DetailFragment extends Fragment {
         fragmentDetailBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail, container, false);
 
         // setup FireBase Analytics
-//        mFirebaseAnalytics = FirebaseAnalytics.getInstance(getActivity().getApplicationContext());
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(requireActivity().getApplicationContext());
 
         HideBottomNavigationBar();
 
@@ -77,7 +80,7 @@ public class DetailFragment extends Fragment {
 //        fragmentDetailBinding.setModel(dataItem);
 
 
-//        seeCoin_logEventAnalytics(dataItem);
+        seeCoin_logEventAnalytics(dataItem);
         setupCoinLogo(dataItem);
         setupBackButtonOnClick();
         onWatchListClick(dataItem);
@@ -110,19 +113,19 @@ public class DetailFragment extends Fragment {
         mainActivity = (MainActivity) context;
     }
 
-//    private void seeCoin_logEventAnalytics(DataItem dataItem) {
-//        Bundle params = new Bundle();
-//        params.putString("Coin_name", dataItem.getName());
-//        params.putString("Coin_symbol", dataItem.getSymbol());
-//        mFirebaseAnalytics.logEvent("Watched_Coins", params);
-//    }
+    private void seeCoin_logEventAnalytics(DataItem dataItem) {
+        Bundle params = new Bundle();
+        params.putString("Coin_name", dataItem.getName());
+        params.putString("Coin_symbol", dataItem.getSymbol());
+        mFirebaseAnalytics.logEvent("Watched_Coins", params);
+    }
 
-//    private void addCoin_logEventAnalytics(DataItem dataItem) {
-//        Bundle params = new Bundle();
-//        params.putString("Coin_name", dataItem.getName());
-//        params.putString("Coin_symbol", dataItem.getSymbol());
-//        mFirebaseAnalytics.logEvent("add_to_watchlist", params);
-//    }
+    private void addCoin_logEventAnalytics(DataItem dataItem) {
+        Bundle params = new Bundle();
+        params.putString("Coin_name", dataItem.getName());
+        params.putString("Coin_symbol", dataItem.getSymbol());
+        mFirebaseAnalytics.logEvent("add_to_watchlist", params);
+    }
 
     private void setupCoinLogo(DataItem dataItem) {
         Glide.with(fragmentDetailBinding.getRoot().getContext())
@@ -164,8 +167,6 @@ public class DetailFragment extends Fragment {
         String volume24 = dataItem.getQuotes().get(0).getVolume24h().toString().split("\\.")[0];
         String totalsupply = dataItem.getTotalSupply().toString().split("\\.")[0];
 
-
-        Log.e("TAG", "MarketCap detail: " + dataItem.getQuotes().get(0).getMarketCap());
         detailValuesArray.add(dataItem.getName());
         detailValuesArray.add("$" + marketCap);
         detailValuesArray.add("$" + volume24);
@@ -277,7 +278,7 @@ public class DetailFragment extends Fragment {
                 watchlistIsChecked = true;
 
                 //send event to firebase analytics
-//                addCoin_logEventAnalytics(dataItem);
+                addCoin_logEventAnalytics(dataItem);
             } else {
                 fragmentDetailBinding.bookmarkBtn.setImageResource(R.drawable.baseline_star_outline_24);
                 //clear bookmark
@@ -293,10 +294,8 @@ public class DetailFragment extends Fragment {
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(requireActivity());
         Gson gson = new Gson();
         String json = sharedPrefs.getString("bookmarks", String.valueOf(new ArrayList<String>()));
-        Type type = new TypeToken<ArrayList<String>>() {
-        }.getType();
+        Type type = new TypeToken<ArrayList<String>>() {}.getType();
         bookmarksArray = gson.fromJson(json, type);
-        Log.e("TAG", "ReadDataStore: " + bookmarksArray);
     }
 
     /// Write BookMarks ArrayList From Shared Preference
