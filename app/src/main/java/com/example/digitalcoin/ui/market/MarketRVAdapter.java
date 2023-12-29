@@ -52,7 +52,6 @@ public class MarketRVAdapter extends RecyclerView.Adapter<MarketRVAdapter.Market
             bundle.putParcelable("model", dataItems.get(position));
 
             Navigation.findNavController(v).navigate(R.id.action_marketFragment_to_detailFragment, bundle);
-
         });
     }
 
@@ -63,8 +62,8 @@ public class MarketRVAdapter extends RecyclerView.Adapter<MarketRVAdapter.Market
 
 
     @SuppressLint("NotifyDataSetChanged")
-    public void updateData(ArrayList<DataItem> newdata) {
-        dataItems = newdata;
+    public void updateData(ArrayList<DataItem> newData) {
+        dataItems = newData;
         notifyDataSetChanged();
 
     }
@@ -80,14 +79,14 @@ public class MarketRVAdapter extends RecyclerView.Adapter<MarketRVAdapter.Market
         @SuppressLint({"DefaultLocale", "SetTextI18n"})
         public void bind(DataItem dataItem, int position) {
 
-            loadCoinlogo(dataItem);
+            loadCoinLogo(dataItem);
             loadChart(dataItem);
             SetColorText(dataItem);
             marketFragRvItemBinding.marketCoinNumber.setText(String.valueOf(position + 1));
             marketFragRvItemBinding.marketCoinName.setText(dataItem.getName());
             marketFragRvItemBinding.marketCoinSymbol.setText(dataItem.getSymbol());
             SetDecimalsForPrice(dataItem);
-            //set + or - before precent change
+            // set + or - before percent change
             if (dataItem.getQuotes().get(0).getPercentChange24h() > 0) {
                 marketFragRvItemBinding.MarketUpDownIcon.setBackgroundResource(R.drawable.ic_baseline_arrow_drop_up_24);
                 marketFragRvItemBinding.marketCoinChange.setText(String.format("%.2f", dataItem.getQuotes().get(0).getPercentChange24h()) + "%");
@@ -100,7 +99,7 @@ public class MarketRVAdapter extends RecyclerView.Adapter<MarketRVAdapter.Market
             marketFragRvItemBinding.executePendingBindings();
         }
 
-        private void loadCoinlogo(DataItem dataItem) {
+        private void loadCoinLogo(DataItem dataItem) {
             Glide.with(marketFragRvItemBinding.getRoot().getContext())
                     .load("https://s2.coinmarketcap.com/static/img/coins/32x32/" + dataItem.getId() + ".png")
                     .thumbnail(Glide.with(marketFragRvItemBinding.getRoot().getContext()).load(R.drawable.loading))
