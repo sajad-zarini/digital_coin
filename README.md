@@ -19,14 +19,6 @@ Embark on a journey into the world of cryptocurrencies with Digital Coin, the An
   <img src="https://github.com/sajad-zarini/digital_coin/blob/main/Screen%20shot/file5.png" width="150" />
 </p>
 
-## Video
-
-<p align="center">
-  <a href="https://github.com/sajad-zarini/digital_coin/blob/main/Screen%20shot/video.mp4">
-    <img src="https://github.com/sajad-zarini/digital_coin/blob/main/Screen%20shot/file.png" alt="Watch the video" width="300" />
-  </a>
-</p>
-
 ## Language
 
 The project is developed using **Java**, and the codebase follows the [Java Coding Standards](https://www.oracle.com/technetwork/java/codeconventions-150003.pdf) for maintainability.
