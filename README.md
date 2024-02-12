@@ -21,7 +21,11 @@ Embark on a journey into the world of cryptocurrencies with Digital Coin, the An
 
 ## Video
 
-[![Watch the video](https://github.com/sajad-zarini/digital_coin/blob/main/Screen%20shot/file.png)](https://github.com/sajad-zarini/digital_coin/blob/main/Screen%20shot/video.mp4)
+<p align="center">
+  <a href="https://github.com/sajad-zarini/digital_coin/blob/main/Screen%20shot/video.mp4">
+    <img src="https://github.com/sajad-zarini/digital_coin/blob/main/Screen%20shot/file.png" alt="Watch the video" width="300" />
+  </a>
+</p>
 
 ## Language
 
