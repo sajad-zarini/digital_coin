@@ -9,7 +9,19 @@ An Android application than cruel and show best digital coin in mobile.
 
 Embark on a journey into the world of cryptocurrencies with Digital Coin, the Android app designed to revolutionize your digital asset experience. Unleash the power of seamless crypto management, unparalleled insights, and cutting-edge features that redefine how you interact with your digital investments.
 
+## Screenshots
 
+<p align="center">
+  <img src="https://github.com/sajad-zarini/digital_coin/blob/main/Screen%20shot/file.png" width="150" />
+  <img src="https://github.com/sajad-zarini/digital_coin/blob/main/Screen%20shot/file2.png" width="150" />
+  <img src="https://github.com/sajad-zarini/digital_coin/blob/main/Screen%20shot/file3.png" width="150" />
+  <img src="https://github.com/sajad-zarini/digital_coin/blob/main/Screen%20shot/file4.png" width="150" />
+  <img src="https://github.com/sajad-zarini/digital_coin/blob/main/Screen%20shot/file5.png" width="150" />
+</p>
+
+## Video
+
+[![Watch the video](https://example.com/file.png)](https://github.com/sajad-zarini/digital_coin/main/Screen%20shot/video.mp4)
 
 ## Language
 
